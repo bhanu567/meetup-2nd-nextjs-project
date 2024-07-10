@@ -7,22 +7,19 @@ import classes from "./MeetupDetails.module.css";
 function MeetupDetails(props) {
   const params = useParams();
 
-  let obj = "";
-  props.datas.forEach((data) => {
-    if (data.id === params.meetupId) {
-      obj = data;
-    }
-  });
+  let index = props.datas.findIndex((data) => data.id === params.meetupId);
+  console.log(index);
 
   return (
     <li className={classes.item}>
       <Card>
         <div className={classes.image}>
-          <img src={obj.image} alt={obj.title} />
+          <img src={props.datas[index].image} alt={props.datas[index].title} />
         </div>
         <div className={classes.content}>
-          <h3>{obj.title}</h3>
-          <address>{obj.address}</address>
+          <h3>{props.datas[index].title}</h3>
+          <address>{props.datas[index].address}</address>
+          <p>{props.datas[index].description}</p>
         </div>
       </Card>
     </li>
